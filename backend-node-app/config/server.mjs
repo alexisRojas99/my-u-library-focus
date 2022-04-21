@@ -6,7 +6,7 @@ class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT || 8000;
-    this.host = process.env.HOST || 'localhost';
+    this.host = process.env.HOST;
     this.usuariosPath = '/api';
 
     // Lectura y Parseo del body

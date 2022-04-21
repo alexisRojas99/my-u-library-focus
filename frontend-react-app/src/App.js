@@ -9,15 +9,18 @@ import Spinner from "./components/Spinner";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const verifyToken = async () => {
       const token = localStorage.getItem("token");
       if (token) {
         const userData = await Auth.auth();
         setUser(userData);
+        setLoading(false);
       }
+      setLoading(false);
     };
+
     verifyToken();
   }, []);
   return (
