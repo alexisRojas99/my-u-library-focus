@@ -40,7 +40,7 @@ BooksRecords.init(
       },
     },
     quantity: {
-      type: psql.Sequelize.STRING,
+      type: psql.Sequelize.INTEGER,
     },
     movement_type: {
       type: psql.Sequelize.ENUM(['entry', 'egress']),

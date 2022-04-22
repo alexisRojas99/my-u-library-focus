@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import DataTableSimple from "../components/DataTableSimple";
 
 const HistoryPage = () => {
   return (
-    <div>HistoryPage</div>
-  )
-}
+    <>
+      <DataTableSimple />
+    </>
+  );
+};
 
-export default HistoryPage
+export default HistoryPage;

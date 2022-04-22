@@ -32,6 +32,7 @@ const postLogin = async (req, res) => {
   const payload = {
     email: dataUser.email,
     role: dataUser.id_rol,
+    id: dataUser.id,
   };
 
   const token = await generateJWT(payload);
@@ -42,9 +43,10 @@ const postLogin = async (req, res) => {
 };
 
 const getAuth = async (req, res) => {
-  const { userEmail, userRole } = req;
+  const { userEmail, userRole, userId } = req;
   return res.status(HttpCode.HTTP_OK).json({
     status: true,
+    id: userId,
     email: userEmail,
     role: userRole,
   });

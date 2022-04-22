@@ -37,7 +37,7 @@ const LoginPage = () => {
               />
             </div>
             <p className={style.link_password}>
-              <NavLink to="/">¿you forgot your password?</NavLink>
+              <NavLink to="/">You forgot your password?</NavLink>
             </p>
             <div className={style.contentLogIn}>
               <ButtonComponent label="Log In" type="submit" />

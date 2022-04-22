@@ -3,7 +3,7 @@ import "./App.css";
 import StudentLayout from "./layouts/StudentLayout";
 import ViewPublic from "./routes/ViewPublic";
 import AuthContext from "./contexts/AuthContext";
-import LibrarianLayout from "./layouts/LibrarianLayout";
+// import LibrarianLayout from "./layouts/LibrarianLayout";
 import Auth from "./services/auth";
 import Spinner from "./components/Spinner";
 
@@ -25,7 +25,7 @@ function App() {
   }, []);
   return (
     <>
-      <AuthContext.Provider value={{ setUser, setLoading }}>
+      <AuthContext.Provider value={{ setUser, setLoading, user }}>
         {loading ? (
           <Spinner />
         ) : !user ? (

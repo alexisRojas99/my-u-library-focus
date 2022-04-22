@@ -27,7 +27,7 @@ class Auth {
    */
   static async auth() {
     const response = await instance.get("/api/login/auth");
-
+    // console.log(response);
     return response.data;
   }
 }

@@ -12,10 +12,14 @@ const validateJWT = (req, res, next) => {
   }
 
   try {
-    const { email, role } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
+    const { email, role, id } = jwt.verify(
+      token,
+      process.env.SECRETORPRIVATEKEY,
+    );
 
     req.userEmail = email;
     req.userRole = role;
+    req.userId = id;
 
     return next();
   } catch (err) {
