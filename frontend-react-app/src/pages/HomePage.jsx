@@ -14,7 +14,8 @@ const HomePage = () => {
   const { user } = useContext(AuthContext);
 
   const saveSelected = (e) => {
-    setSelected((prev) => [...prev, e]);
+    // setSelected((prev) => [...prev, e]);
+    setSelected(e);
     setError(false);
   };
 
@@ -23,35 +24,23 @@ const HomePage = () => {
       return setError("you must select any element");
     }
 
-    let state = false;
-
     select.forEach(async (item) => {
-      if (Number(item.row.stock) === 0) {
-        setError(`but not in stock ${item.row.title} book`);
-        state = true;
+      if (Number(item.stock) === 0) {
+        setError(`not in stock ${item.title} book`);
       } else {
-        state = false;
-        await BooksRecords.createBooksRecords(
-          user.id,
-          item.row.id,
-          1,
-          "egress"
-        );
-        const stockDecrease = Number(item.row.stock) - 1;
+        await BooksRecords.createBooksRecords(user.id, item.isbn, 1, "egress");
+        const stockDecrease = Number(item.stock) - 1;
         await Books.updateBook(
-          item.row.id,
-          item.row.title,
-          item.row.author,
-          Number(item.row.published_year),
-          item.row.genre,
+          item.isbn,
+          item.title,
+          item.author,
+          Number(item.published_year),
+          item.genre,
           stockDecrease
         );
       }
     });
-    if (!state) {
-      setMessage("Successful");
-    }
-    setStateCheckBox(false);
+    setMessage("Successful");
     setTimeout(() => {
       setMessage(false);
       setStateCheckBox(null);

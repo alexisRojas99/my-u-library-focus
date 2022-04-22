@@ -5,7 +5,7 @@ import AuthContext from "../contexts/AuthContext";
 
 const StudentLayout = ({ children }) => {
   const [activeIndex, setActiveIndex] = useState(3);
-  const { setUser } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const items = [
     { label: "Books", icon: "pi pi-fw pi-book", route: "/" },
     { label: "History", icon: "pi pi-fw pi-calendar", route: "/history" },
@@ -24,6 +24,7 @@ const StudentLayout = ({ children }) => {
         setActiveIndex={setActiveIndex}
         items={items}
       />
+      <center><h4>Student / username: {user.email}</h4></center>
       <ViewStudent />
     </>
   );

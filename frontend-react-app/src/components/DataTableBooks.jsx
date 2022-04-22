@@ -51,6 +51,14 @@ const DataTableBooks = ({ collectionBooks, stateChecks }) => {
     rows = newDataRow;
   }
 
+  const matchChekslist = (e) => {
+    const dataResponseArr = dataRow.data.dataBooks;
+
+    const newDataArr = dataResponseArr.filter((itemA) => e.includes(itemA.isbn))
+
+    collectionBooks(newDataArr);
+  };
+
   return (
     <div className={style.contentDataTable}>
       <div style={{ height: 400, width: "52%" }}>
@@ -61,8 +69,10 @@ const DataTableBooks = ({ collectionBooks, stateChecks }) => {
             pageSize={5}
             rowsPerPageOptions={[5]}
             checkboxSelection
-            onRowClick={(e) => collectionBooks(e)}
-            isRowSelectable={() => stateChecks??true}
+            onSelectionModelChange={(e) => {
+              matchChekslist(e);
+            }}
+            isRowSelectable={() => stateChecks ?? true}
           />
         )}
       </div>
