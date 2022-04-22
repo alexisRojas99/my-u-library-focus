@@ -3,6 +3,7 @@ import DataTableBooks from "../components/DataTableBooks";
 import ButtonComponent from "../components/ButtonComponent";
 import style from "./css/HomePage.module.css";
 import BooksRecords from "../services/books-records/index";
+import Books from "../services/books/index";
 import AuthContext from "../contexts/AuthContext";
 
 const HomePage = () => {
@@ -21,15 +22,40 @@ const HomePage = () => {
     if (select.length === 0) {
       return setError("you must select any element");
     }
+
+    let state = false;
+
     select.forEach(async (item) => {
-      await BooksRecords.createBooksRecords(user.id, item.row.id, 1, "entry");
+      if (Number(item.row.stock) === 0) {
+        setError(`but not in stock ${item.row.title} book`);
+        state = true;
+      } else {
+        state = false;
+        await BooksRecords.createBooksRecords(
+          user.id,
+          item.row.id,
+          1,
+          "egress"
+        );
+        const stockDecrease = Number(item.row.stock) - 1;
+        await Books.updateBook(
+          item.row.id,
+          item.row.title,
+          item.row.author,
+          Number(item.row.published_year),
+          item.row.genre,
+          stockDecrease
+        );
+      }
     });
-    setMessage("Successful");
+    if (!state) {
+      setMessage("Successful");
+    }
     setStateCheckBox(false);
     setTimeout(() => {
       setMessage(false);
       setStateCheckBox(null);
-    }, 2000);
+    }, 3000);
   };
   return (
     <>

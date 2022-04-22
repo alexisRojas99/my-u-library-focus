@@ -24,7 +24,7 @@ router.post(
 
 router.put(
   '/:isbn',
-  [validateRole('ROLE_LIBRARIAN'), validate(updateBookSchema)],
+  [validate(updateBookSchema)],
   updateBook,
 );
 

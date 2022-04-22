@@ -58,6 +58,7 @@ const getBooksRecords = async (req, res) => {
   }
   const dataBooksRecords = await BooksRecords.findAll({
     ...criterion,
+    order: [['movement_date', 'DESC']],
     include: [
       {
         model: Users,

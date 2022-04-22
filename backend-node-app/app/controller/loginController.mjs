@@ -13,7 +13,7 @@ const postLogin = async (req, res) => {
   });
 
   if (!dataUser) {
-    return res.status(HttpCode.HTTP_NOT_FOUND).json({
+    return res.status(HttpCode.HTTP_OK).json({
       message: 'user not found',
     });
   }

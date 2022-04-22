@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import style from "./css/LoginPage.module.css";
 import { useForm } from "react-hook-form";
 import Input from "../components/Input";
@@ -11,13 +11,28 @@ import { NavLink } from "react-router-dom";
 const LoginPage = () => {
   const { register, handleSubmit } = useForm();
   const { setUser, setLoading } = useContext(AuthContext);
+
+  const [error, setError] = useState(false);
+
   const onSubmit = async (data) => {
-    setLoading(true);
-    await Auth.login(data.email, data.password);
+    const regex =
+      /^([a-zA-Z0-9./^S+$/<*>!#$%&'+/=?^_`{|}~-]+([s]{0}))+?@[a-zA-Z]+([.]{1})[a-zA-Z]+[s]{0}[.]?[a-zA-Z](([.]{0,1})([a-zA-Z]{2})+)*$/;
+
+    if (!regex.test(data.email)) {
+      return setError("email invalid");
+    }
+
+    const login = await Auth.login(data.email, data.password);
+    if (
+      login.message === "user not found" ||
+      login.message === "wrong password"
+    ) {
+      setError("wrong username and/or password");
+      return;
+    }
     const userData = await Auth.auth();
     setUser(userData);
     window.location.replace("/");
-    setLoading(false);
   };
   return (
     <>
@@ -42,6 +57,9 @@ const LoginPage = () => {
             <div className={style.contentLogIn}>
               <ButtonComponent label="Log In" type="submit" />
             </div>
+            <center>
+              <span>{error && error}</span>
+            </center>
           </form>
         </div>
       </section>

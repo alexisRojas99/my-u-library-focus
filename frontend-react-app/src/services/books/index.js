@@ -79,15 +79,16 @@ class Books {
    * @returns
    */
 
-  static async updateBook(isbn, author, published_year, genre, stock) {
+  static async updateBook(isbn, title, author, published_year, genre, stock) {
     const data = {
+      title,
       author,
       published_year,
       genre,
       stock,
     };
 
-    const response = await instance.put(`/api/book/${isbn}`, data);
+    const response = await instance.put(`/api/books/${isbn}`, data);
 
     return response;
   }

@@ -30,7 +30,7 @@ const DataTableSimple = ({ collectionBooks, stateChecks }) => {
     },
     { field: "quantity", headerName: "Quantity", width: 70, type: "number" },
     { field: "movement_type", headerName: "Movement", width: 95 },
-    { field: "movement_date", headerName: "Movement Date", width: 145 },
+    { field: "movement_date", headerName: "Movement Date", width: 195 },
   ];
 
   const newDataRow = [];
@@ -41,6 +41,11 @@ const DataTableSimple = ({ collectionBooks, stateChecks }) => {
     const dataArr = dataRow.dataBooksRecords;
 
     dataArr.forEach((element, i) => {
+      const dateZone = new Date(element.movement_date).toLocaleDateString(
+        "es-Es",
+        { timeZone: "America/El_Salvador" }
+      );
+    
       newDataRow.push({
         id: i + 1,
         isbn: element.isbn,
@@ -50,15 +55,7 @@ const DataTableSimple = ({ collectionBooks, stateChecks }) => {
         published_year: element.Book.published_year,
         quantity: element.quantity,
         movement_type: element.movement_type,
-        movement_date: `${new Date(element.movement_date).getDay()}/${new Date(
-          element.movement_date
-        ).getMonth()}/${new Date(
-          element.movement_date
-        ).getFullYear()} ${new Date(
-          element.movement_date
-        ).getHours()}:${new Date(
-          element.movement_date
-        ).getMinutes()}:${new Date(element.movement_date).getSeconds()}`,
+        movement_date: `${dateZone} ${new Date(element.movement_date).getHours() - 6}:${new Date(element.movement_date).getMinutes()}:${new Date(element.movement_date).getSeconds()}`,
       });
     });
 

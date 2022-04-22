@@ -1,6 +1,14 @@
 import instance from "../config/axiosConfig";
 
 class BooksRecords {
+  static async getAllBooksRecords() {
+    const response = await instance.get("/api/books-records");
+
+    // console.log(response);
+
+    return response;
+  }
+
   /**
    *
    * @param {integer} id_user
@@ -17,14 +25,6 @@ class BooksRecords {
       movement_type,
     };
     const response = await instance.post("/api/books-records", data);
-
-    return response;
-  }
-
-  static async getAllBooksRecords() {
-    const response = await instance.get("/api/books-records");
-
-    // console.log(response);
 
     return response;
   }

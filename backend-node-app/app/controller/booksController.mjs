@@ -25,7 +25,7 @@ const getBooksAvailable = async (req, res) => {
   if (page && pageSize) {
     criterion = pagination(criterion, { page, pageSize });
   }
-  const dataBooks = await Books.findAll({ ...criterion });
+  const dataBooks = await Books.findAll({ ...criterion, order: [['stock', 'DESC']] });
   const countAllBooks = await Books.count();
   return res
     .status(HttpCode.HTTP_OK)
