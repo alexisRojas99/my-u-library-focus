@@ -23,3 +23,8 @@ password: 123
 - http://localhost:8000/api/books/available
 - http://localhost:8000/api/books-records
 
+## filters
+
+ - to apply filters click on the label:
+
+![image](https://user-images.githubusercontent.com/81053342/164756119-86b6a733-b13f-42bd-8e05-ad633f1078c5.png)
