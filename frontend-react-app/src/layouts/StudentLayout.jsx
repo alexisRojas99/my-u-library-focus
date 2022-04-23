@@ -15,6 +15,7 @@ const StudentLayout = ({ children }) => {
       onClick: () => {
         localStorage.removeItem("token");
         setUser(null);
+        window.location.replace("/");
       },
     },
   ];
@@ -25,7 +26,9 @@ const StudentLayout = ({ children }) => {
         setActiveIndex={setActiveIndex}
         items={items}
       />
-      <center><h4>Student / username: {user.email}</h4></center>
+      <center>
+        <h4>Student / username: {user.email}</h4>
+      </center>
       <ViewStudent />
     </>
   );

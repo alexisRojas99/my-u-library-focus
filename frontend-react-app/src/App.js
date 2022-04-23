@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import "./App.css";
 import StudentLayout from "./layouts/StudentLayout";
 import ViewPublic from "./routes/ViewPublic";
@@ -11,8 +11,10 @@ import LibrarianLayout from "./layouts/LibrarianLayout";
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [token] = useState(localStorage.getItem("token"));
-  useEffect(() => {
+
+  useLayoutEffect(() => {
+    console.log("carga");
+    const token = localStorage.getItem("token");
     const verifyToken = async () => {
       if (token) {
         const userData = await Auth.auth();
@@ -24,23 +26,27 @@ function App() {
     };
 
     verifyToken();
-  }, [token]);
+  }, []);
+
+  let layouts;
+
+  switch (user?.role) {
+    case 1:
+      layouts = <LibrarianLayout />;
+      break;
+
+    case 2:
+      layouts = <StudentLayout />;
+      break;
+
+    default:
+      layouts = <ViewPublic />;
+      break;
+  }
   return (
     <>
       <AuthContext.Provider value={{ setUser, setLoading, user }}>
-        {loading ? (
-          <Spinner />
-        ) : !user ? (
-          <ViewPublic />
-        ) : loading ? (
-          <Spinner />
-        ) : user.role === 2 ? (
-          <StudentLayout />
-        ) : loading ? (
-          <Spinner />
-        ) : (
-          user.role === 1 && <LibrarianLayout />
-        )}
+        {loading ? <Spinner /> : layouts}
       </AuthContext.Provider>
     </>
   );
