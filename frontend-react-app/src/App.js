@@ -6,6 +6,7 @@ import AuthContext from "./contexts/AuthContext";
 // import LibrarianLayout from "./layouts/LibrarianLayout";
 import Auth from "./services/auth";
 import Spinner from "./components/Spinner";
+import LibrarianLayout from "./layouts/LibrarianLayout";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -25,6 +26,7 @@ function App() {
 
     verifyToken();
   }, [token]);
+  console.log(user);
   return (
     <>
       <AuthContext.Provider value={{ setUser, setLoading, user }}>
@@ -32,8 +34,12 @@ function App() {
           <Spinner />
         ) : !user ? (
           <ViewPublic />
+        ) : user.role === 2 ? (
+          <StudentLayout />
+        ) : loading ? (
+          <Spinner />
         ) : (
-          user.role === 2 && <StudentLayout />
+          user.role === 1 && <LibrarianLayout />
         )}
       </AuthContext.Provider>
     </>
