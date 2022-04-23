@@ -39,7 +39,7 @@ const InputPassword = ({ register }) => {
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
       <div>
-        <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+        <FormControl sx={{ ml: 0, width: "234px" }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">
             password
           </InputLabel>

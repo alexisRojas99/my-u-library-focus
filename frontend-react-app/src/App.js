@@ -19,14 +19,12 @@ function App() {
         if (userData.status) {
           setUser(userData);
         }
-        setLoading(false);
       }
       setLoading(false);
     };
 
     verifyToken();
   }, [token]);
-  console.log(user);
   return (
     <>
       <AuthContext.Provider value={{ setUser, setLoading, user }}>
@@ -34,6 +32,8 @@ function App() {
           <Spinner />
         ) : !user ? (
           <ViewPublic />
+        ) : loading ? (
+          <Spinner />
         ) : user.role === 2 ? (
           <StudentLayout />
         ) : loading ? (

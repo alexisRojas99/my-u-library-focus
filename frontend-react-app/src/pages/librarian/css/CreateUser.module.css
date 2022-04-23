@@ -4,7 +4,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
   margin-bottom: 60px;
   flex-direction: column;
   align-items: center;
@@ -12,11 +11,11 @@
 
 /* LOGIN */
 
-.form_login {
+.form_create_user {
   margin-top: 25px;
   background-color: #fefefe;
   width: 550px;
-  height: 275px;
+  height: 360px;
   padding: 20px;
   box-shadow: 0 0 3px grey;
   border-radius: 10px;
@@ -24,7 +23,7 @@
   flex-direction: column;
 }
 
-.form_login .lblTitle {
+.form_create_user .lblTitle {
   text-align: left;
   width: 100%;
   font-family: "Potta One", normal;
@@ -40,30 +39,26 @@
   margin-bottom: 20px;
 }
 
-.contentLogIn {
+.contentButtonCreate {
   width: 100%;
   height: 50px;
 }
 
-.contentLogIn button {
+.contentButtonCreate button {
   width: 100%;
   height: 40px;
-  margin-top: 15px;
   border-radius: 5px;
 }
 
-.link_password {
+/* SELECT BASIC */
+
+.containerSelect {
   width: 100%;
-  text-align: left;
-  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-.link_password a {
-  text-decoration: none;
-  color: #85c8f6;
-  font-weight: 700;
-}
-
-.link_password a:hover {
-  text-decoration: underline;
+.containerSelect div {
+  width: 100%;
 }

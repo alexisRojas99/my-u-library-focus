@@ -37,6 +37,9 @@ const LoginPage = () => {
   return (
     <>
       <section className={style.banner}>
+        <center>
+          <h2>MY U LIBRARY</h2>
+        </center>
         <div className={style.form_login}>
           <label htmlFor="" className={style.lblTitle}>
             LOG IN
