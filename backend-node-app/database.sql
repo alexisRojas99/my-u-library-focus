@@ -10,7 +10,7 @@ CREATE TABLE public.users (
     id serial4 NOT NULL PRIMARY KEY,
     first_name varchar NOT NULL,
     last_name varchar NOT NULL,
-    email varchar NOT NULL,
+    email varchar NOT NULL UNIQUE,
     id_rol serial4 NOT NULL REFERENCES public.roles(id),
     password varchar NOT NULL
 );

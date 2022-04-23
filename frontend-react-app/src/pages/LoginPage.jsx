@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 
 const LoginPage = () => {
   const { register, handleSubmit } = useForm();
-  const { setUser, setLoading } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
 
   const [error, setError] = useState(false);
 
@@ -52,6 +52,7 @@ const LoginPage = () => {
               />
               <InputPassword
                 register={register("password", { required: true })}
+                onChange={() => {}}
               />
             </div>
             <p className={style.link_password}>
@@ -60,6 +61,7 @@ const LoginPage = () => {
             <div className={style.contentLogIn}>
               <ButtonComponent label="Log In" type="submit" />
             </div>
+            <br />
             <center>
               <span>{error && error}</span>
             </center>

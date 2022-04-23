@@ -7,8 +7,8 @@ const StudentLayout = ({ children }) => {
   const [activeIndex, setActiveIndex] = useState(3);
   const { user, setUser } = useContext(AuthContext);
   const items = [
-    { label: "Books", icon: "pi pi-fw pi-book", route: "/" },
-    { label: "History", icon: "pi pi-fw pi-history", route: "/history" },
+    { label: "Reserve books", icon: "pi pi-fw pi-book", route: "/" },
+    { label: "My Books Records", icon: "pi pi-fw pi-history", route: "/history" },
     {
       label: "Logout",
       icon: "pi pi-sign-out",

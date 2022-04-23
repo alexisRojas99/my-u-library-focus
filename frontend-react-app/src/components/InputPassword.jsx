@@ -1,18 +1,14 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
-import FilledInput from "@mui/material/FilledInput";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-const InputPassword = ({ register }) => {
+const InputPassword = ({ register, onChange }) => {
   const [values, setValues] = React.useState({
     amount: "",
     password: "",
@@ -21,8 +17,8 @@ const InputPassword = ({ register }) => {
     showPassword: false,
   });
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+  const handleChange = (event) => {
+    setValues({ ...values, "password": event.target.value });
   };
 
   const handleClickShowPassword = () => {
@@ -47,8 +43,8 @@ const InputPassword = ({ register }) => {
             inputProps={{ ...register }}
             id="outlined-adornment-password"
             type={values.showPassword ? "text" : "password"}
-            value={values.password}
-            onChange={handleChange("password")}
+            // value={values.password}
+            onChange={(e) => {handleChange(e); onChange(e)}}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
