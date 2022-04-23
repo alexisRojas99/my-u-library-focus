@@ -1,8 +1,15 @@
 import instance from "../config/axiosConfig";
 
 class BooksRecords {
-  static async getAllBooksRecords() {
-    const response = await instance.get("/api/books-records");
+  static async getAllBooksRecords(id_user) {
+    const params = {};
+
+    if (id_user) {
+      params.id_user = id_user
+    }
+    const response = await instance.get(`/api/books-records/`, {
+      params,
+    });
 
     // console.log(response);
 

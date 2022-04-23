@@ -13,7 +13,6 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
-    console.log("carga");
     const token = localStorage.getItem("token");
     const verifyToken = async () => {
       if (token) {

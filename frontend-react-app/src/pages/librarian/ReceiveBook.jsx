@@ -1,8 +1,9 @@
 import React from 'react'
+import DataTableReceive from '../../components/DataTableReceive'
 
 const ReceiveBook = () => {
   return (
-    <div>ReceiveBook</div>
+    <DataTableReceive />
   )
 }
 

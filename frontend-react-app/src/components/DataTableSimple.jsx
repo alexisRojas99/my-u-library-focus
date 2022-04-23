@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import getAllBooksRecords from "../services/books-records";
 import style from "./css/DataTableBooks.module.css";
 import moment from "moment";
+import AuthContext from "../contexts/AuthContext";
 
 const DataTableSimple = ({ collectionBooks, stateChecks }) => {
+  const { user } = useContext(AuthContext);
   const [dataRow, setDataRow] = useState();
 
   useEffect(() => {
     const getAllBooks = async () => {
       // const response = await Books.getBooks();
-      const { data } = await getAllBooksRecords.getAllBooksRecords();
+      const { data } = await getAllBooksRecords.getAllBooksRecords(user.id);
 
       setDataRow(data);
     };
     getAllBooks();
-  }, []);
+  }, [user.id]);
 
   const columns = [
     { field: "id", headerName: "cant", width: 20 },
@@ -42,7 +44,6 @@ const DataTableSimple = ({ collectionBooks, stateChecks }) => {
     const dataArr = dataRow.dataBooksRecords;
 
     dataArr.forEach((element, i) => {
-      
       newDataRow.push({
         id: i + 1,
         isbn: element.isbn,
@@ -52,11 +53,11 @@ const DataTableSimple = ({ collectionBooks, stateChecks }) => {
         published_year: element.Book.published_year,
         quantity: element.quantity,
         movement_type: element.movement_type,
-        movement_date: `${moment(element.movement_date).format("L")} ${
-          new Date(element.movement_date).getHours()
-        }:${new Date(element.movement_date).getMinutes()}:${new Date(
+        movement_date: `${moment(element.movement_date).format("L")} ${new Date(
           element.movement_date
-        ).getSeconds()}`,
+        ).getHours()}:${new Date(
+          element.movement_date
+        ).getMinutes()}:${new Date(element.movement_date).getSeconds()}`,
       });
     });
 
