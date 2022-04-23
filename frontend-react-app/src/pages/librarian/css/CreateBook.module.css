@@ -1,0 +1,53 @@
+/*  BANNER */
+
+.banner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* ADD NEW BOOK */
+  
+  .form_add_new_book {
+    margin-top: 25px;
+    background-color: #fefefe;
+    width: 550px;
+    height: 360px;
+    padding: 20px;
+    box-shadow: 0 0 3px grey;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form_add_new_book .lblTitle {
+    text-align: left;
+    width: 100%;
+    font-family: "Potta One", normal;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .containerInputs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .contentButtonCreate {
+    width: 100%;
+    height: 50px;
+  }
+  
+  .contentButtonCreate button {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+  }
+
+  

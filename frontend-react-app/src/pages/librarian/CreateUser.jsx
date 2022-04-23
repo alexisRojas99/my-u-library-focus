@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import Input from "../../components/Input";
 import InputPassword from "../../components/InputPassword";
 import ButtonComponent from "../../components/ButtonComponent";
-import { NavLink } from "react-router-dom";
 import SelectBasic from "../../components/SelectBasic";
 
 const CreateUser = () => {
@@ -18,7 +17,7 @@ const CreateUser = () => {
       <section className={style.banner}>
         <div className={style.form_create_user}>
           <label htmlFor="" className={style.lblTitle}>
-            CREATE USER
+            CREATE NEW USER
           </label>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className={style.containerInputs}>
