@@ -1,4 +1,5 @@
 import { Op } from 'sequelize';
+import moment from 'moment';
 import HttpCode from '../../config/HttpCode.mjs';
 import pagination from '../helpers/pagination.mjs';
 import { Users, BooksRecords, Books } from '../models/index.mjs';
@@ -88,7 +89,7 @@ const postCreateRecords = async (req, res) => {
     isbn: isbn.toUpperCase(),
     quantity: Number(quantity),
     movement_type: movementType.toLowerCase(),
-    movement_date: new Date(),
+    movement_date: moment().format(),
   };
 
   try {

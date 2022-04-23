@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Books from "../services/books";
 import style from "./css/DataTableBooks.module.css";
+import "./css/DataTableBooks.css";
 
-const DataTableBooks = ({ collectionBooks, stateChecks }) => {
+const DataTableBooks = ({ collectionBooks, stateChecks, refreshKey }) => {
   const [dataRow, setDataRow] = useState();
 
   useEffect(() => {
@@ -12,11 +13,11 @@ const DataTableBooks = ({ collectionBooks, stateChecks }) => {
       setDataRow(response);
     };
     getAllBooks();
-  }, []);
+  }, [refreshKey]);
 
   const columns = [
     { field: "id", headerName: "ISBN", width: 150 },
-    { field: "title", headerName: "Title", width: 225 },
+    { field: "title", headerName: "Title", width: 240 },
     { field: "author", headerName: "Author", width: 160 },
     { field: "genre", headerName: "Genre", width: 150 },
     {
@@ -29,7 +30,7 @@ const DataTableBooks = ({ collectionBooks, stateChecks }) => {
       field: "stock",
       headerName: "Stock",
       type: "number",
-      width: 60,
+      width: 70,
     },
   ];
 
@@ -54,14 +55,16 @@ const DataTableBooks = ({ collectionBooks, stateChecks }) => {
   const matchChekslist = (e) => {
     const dataResponseArr = dataRow.data.dataBooks;
 
-    const newDataArr = dataResponseArr.filter((itemA) => e.includes(itemA.isbn))
+    const newDataArr = dataResponseArr.filter((itemA) =>
+      e.includes(itemA.isbn)
+    );
 
     collectionBooks(newDataArr);
   };
 
   return (
     <div className={style.contentDataTable}>
-      <div style={{ height: 400, width: "52%" }}>
+      <div style={{ height: "auto", width: "100%" }}>
         {dataRow && (
           <DataGrid
             rows={rows}
@@ -73,6 +76,7 @@ const DataTableBooks = ({ collectionBooks, stateChecks }) => {
               matchChekslist(e);
             }}
             isRowSelectable={() => stateChecks ?? true}
+            autoHeight
           />
         )}
       </div>

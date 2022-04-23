@@ -13,6 +13,8 @@ const HomePage = () => {
   const [error, setError] = useState(false);
   const { user } = useContext(AuthContext);
 
+  const [refreshKey, setRefreshKey] = useState(0);
+
   const saveSelected = (e) => {
     // setSelected((prev) => [...prev, e]);
     setSelected(e);
@@ -39,18 +41,21 @@ const HomePage = () => {
           stockDecrease
         );
       }
+      setRefreshKey((oldKey) => oldKey + 1);
     });
     setMessage("Successful");
+    setStateCheckBox(false);
     setTimeout(() => {
       setMessage(false);
       setStateCheckBox(null);
-    }, 3000);
+    }, 2500);
   };
   return (
     <>
       <DataTableBooks
         collectionBooks={(e) => saveSelected(e)}
         stateChecks={stateCheckBox}
+        refreshKey={refreshKey}
       />
       <div className={style.contentButton}>
         <ButtonComponent

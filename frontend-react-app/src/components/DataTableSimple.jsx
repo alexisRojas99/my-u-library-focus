@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import getAllBooksRecords from "../services/books-records";
 import style from "./css/DataTableBooks.module.css";
+import moment from "moment";
 
 const DataTableSimple = ({ collectionBooks, stateChecks }) => {
   const [dataRow, setDataRow] = useState();
@@ -30,7 +31,7 @@ const DataTableSimple = ({ collectionBooks, stateChecks }) => {
     },
     { field: "quantity", headerName: "Quantity", width: 70, type: "number" },
     { field: "movement_type", headerName: "Movement", width: 95 },
-    { field: "movement_date", headerName: "Movement Date", width: 195 },
+    { field: "movement_date", headerName: "Movement Date", width: 200 },
   ];
 
   const newDataRow = [];
@@ -41,11 +42,7 @@ const DataTableSimple = ({ collectionBooks, stateChecks }) => {
     const dataArr = dataRow.dataBooksRecords;
 
     dataArr.forEach((element, i) => {
-      const dateZone = new Date(element.movement_date).toLocaleDateString(
-        "es-Es",
-        { timeZone: "America/El_Salvador" }
-      );
-    
+      
       newDataRow.push({
         id: i + 1,
         isbn: element.isbn,
@@ -55,7 +52,11 @@ const DataTableSimple = ({ collectionBooks, stateChecks }) => {
         published_year: element.Book.published_year,
         quantity: element.quantity,
         movement_type: element.movement_type,
-        movement_date: `${dateZone} ${new Date(element.movement_date).getHours() - 6}:${new Date(element.movement_date).getMinutes()}:${new Date(element.movement_date).getSeconds()}`,
+        movement_date: `${moment(element.movement_date).format("L")} ${
+          new Date(element.movement_date).getHours()
+        }:${new Date(element.movement_date).getMinutes()}:${new Date(
+          element.movement_date
+        ).getSeconds()}`,
       });
     });
 
@@ -64,15 +65,16 @@ const DataTableSimple = ({ collectionBooks, stateChecks }) => {
 
   return (
     <div className={style.contentDataTable}>
-      <div style={{ height: 400, width: "63%" }}>
+      <div style={{ height: "auto", width: "100%" }}>
         {dataRow && (
           <DataGrid
             rows={rows}
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
-            onRowClick={(e) => collectionBooks(e)}
+            // onRowClick={(e) => collectionBooks(e)}
             isRowSelectable={() => stateChecks ?? true}
+            autoHeight
           />
         )}
       </div>

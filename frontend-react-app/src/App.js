@@ -10,19 +10,21 @@ import Spinner from "./components/Spinner";
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [token] = useState(localStorage.getItem("token"));
   useEffect(() => {
     const verifyToken = async () => {
-      const token = localStorage.getItem("token");
       if (token) {
         const userData = await Auth.auth();
-        setUser(userData);
+        if (userData.status) {
+          setUser(userData);
+        }
         setLoading(false);
       }
       setLoading(false);
     };
 
     verifyToken();
-  }, []);
+  }, [token]);
   return (
     <>
       <AuthContext.Provider value={{ setUser, setLoading, user }}>

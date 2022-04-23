@@ -31,7 +31,7 @@ CREATE TABLE public.books_records(
     isbn varchar(13) NOT NULL REFERENCES public.books(isbn),
     quantity NUMERIC(2),
     movement_type m_types,
-    movement_date timestamp
+    movement_date timestamptz
 );
 
 
