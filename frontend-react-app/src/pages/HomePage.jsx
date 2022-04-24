@@ -26,11 +26,35 @@ const HomePage = () => {
       return setError("you must select any element");
     }
 
-    select.forEach(async (item) => {
+    select.forEach(async (item, i) => {
       if (Number(item.stock) === 0) {
         setError(`not in stock ${item.title} book`);
       } else {
-        await BooksRecords.createBooksRecords(user.id, item.isbn, 1, "egress");
+        const responseBooksRecords = await BooksRecords.getAllBooksRecords(
+          user.id
+        );
+
+        const match = responseBooksRecords.data.dataBooksRecords?.find(
+          (itemA) => select.find((itemB) => itemA.isbn === itemB.isbn)
+        );
+
+        if (match === undefined) {
+          await BooksRecords.createBooksRecords(
+            user.id,
+            item.isbn,
+            1,
+            "egress"
+          );
+        } else {
+          await BooksRecords.updateBooksRecords(
+            match?.id,
+            user.id,
+            item.isbn,
+            Number(responseBooksRecords.data.dataBooksRecords[i]?.quantity + 1),
+            "egress"
+          );
+        }
+
         const stockDecrease = Number(item.stock) - 1;
         await Books.updateBook(
           item.isbn,

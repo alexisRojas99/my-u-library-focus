@@ -5,7 +5,7 @@ class BooksRecords {
     const params = {};
 
     if (id_user) {
-      params.id_user = id_user
+      params.id_user = id_user;
     }
     const response = await instance.get(`/api/books-records/`, {
       params,
@@ -30,6 +30,18 @@ class BooksRecords {
       movement_type,
     };
     const response = await instance.post("/api/books-records", data);
+
+    return response;
+  }
+
+  static async updateBooksRecords(id_table, id_user, isbn, quantity, movement_type) {
+    const data = {
+      id_user,
+      isbn,
+      quantity,
+      movement_type,
+    };
+    const response = await instance.put(`/api/books-records/${id_table}`, data);
 
     return response;
   }

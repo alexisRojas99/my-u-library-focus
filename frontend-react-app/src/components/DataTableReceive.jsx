@@ -3,7 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import BooksRecords from "../services/books-records/index";
 import style from "./css/DataTableBooks.module.css";
 import "./css/DataTableBooks.css";
-import moment from 'moment'
+import moment from "moment";
 
 const DataTableReceive = ({ collectionBooks, stateChecks, refreshKey }) => {
   const [dataRow, setDataRow] = useState();
@@ -17,7 +17,6 @@ const DataTableReceive = ({ collectionBooks, stateChecks, refreshKey }) => {
   }, [refreshKey]);
 
   const columns = [
-    { field: "id", headerName: "cant", width: 50 },
     { field: "username", headerName: "Student email", width: 200 },
     { field: "id_user", headerName: "Student Id", width: 100 },
     { field: "isbn", headerName: "ISBN", width: 150 },
@@ -70,19 +69,14 @@ const DataTableReceive = ({ collectionBooks, stateChecks, refreshKey }) => {
     const dataResponseArr = dataRow.data.dataBooksRecords;
     dataResponseArr.forEach((item, i) => {
       const jsonData = JSON.parse(JSON.stringify(item));
-      jsonData["id"] = i + 1;
+      jsonData["id_item"] = i + 1;
 
       return dataMap.push(jsonData);
     });
 
-    const newDataArr = dataMap.filter((itemA) =>
-      e.includes(itemA.id)
-    );
+    const newDataArr = dataMap.filter((itemA) => e.includes(itemA.id_item));
 
-    // console.log('array', newDataArr);
-    // console.log(e);
-
-    // collectionBooks(newDataArr);
+    collectionBooks(newDataArr);
   };
   return (
     <div className={style.contentDataTable}>

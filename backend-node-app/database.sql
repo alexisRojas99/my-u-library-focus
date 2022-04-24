@@ -29,8 +29,8 @@ CREATE TABLE public.books_records(
     id serial4 NOT NULL PRIMARY KEY,
     id_user serial4 NOT NULL REFERENCES public.users(id),
     isbn varchar(13) NOT NULL REFERENCES public.books(isbn),
-    quantity NUMERIC(2),
-    movement_type m_types,
+    quantity INTEGER,
+    movement_type VARCHAR(8),
     movement_date timestamptz
 );
 

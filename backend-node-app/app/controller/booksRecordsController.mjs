@@ -118,12 +118,12 @@ const updateBookRecords = async (req, res) => {
     isbn: isbn.toUpperCase(),
     quantity: Number(quantity),
     movement_type: movementType.toLowerCase(),
-    movement_date: new Date(),
+    movement_date: moment().format(),
   };
   try {
     const validateUpdate = await BooksRecords.update(data, {
       where: {
-        id,
+        isbn,
       },
     });
 
