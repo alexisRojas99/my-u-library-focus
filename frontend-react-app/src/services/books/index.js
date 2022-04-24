@@ -64,9 +64,12 @@ class Books {
       stock,
     };
 
-    const response = await instance.post("/api/books", data);
-
-    return response;
+    try {
+      const response = await instance.post("/api/books", data);
+      return response;
+    } catch (error) {
+      return error.response;
+    }
   }
 
   /**

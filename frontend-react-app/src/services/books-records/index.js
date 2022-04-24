@@ -11,8 +11,6 @@ class BooksRecords {
       params,
     });
 
-    // console.log(response);
-
     return response;
   }
 

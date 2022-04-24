@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 
-const Input = ({ label, register, onChange }) => {
+const Input = ({ label, register, onChange, type }) => {
   return (
     <TextField
       // id="outlined-basic"
@@ -9,6 +9,7 @@ const Input = ({ label, register, onChange }) => {
       variant="outlined"
       inputProps={{ ...register }}
       onChange={onChange}
+      type={type}
     />
   );
 };

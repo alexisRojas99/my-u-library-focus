@@ -57,8 +57,8 @@ const postCreateBook = async (req, res) => {
       createBook,
     });
   } catch (error) {
-    return res.status(HttpCode.HTTP_BAD_REQUEST).json({
-      message: error,
+    return res.status(HttpCode.HTTP_OK).json({
+      message: error.errors[0].message,
     });
   }
 };

@@ -21,7 +21,7 @@ CREATE TABLE public.books (
     author varchar(100) NOT NULL,
     published_year NUMERIC(4),
     genre varchar(100),
-    stock NUMERIC(2)
+    stock BIGINT
 );
 
 CREATE TYPE m_types AS ENUM('entry','egress');

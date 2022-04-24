@@ -45,12 +45,8 @@ const createNewBookSchema = {
     },
     stock: {
       type: 'integer',
-      maximum: 99,
-      minimum: 0,
       errorMessage: {
         type: 'The stock must be integer',
-        maximum: 'The stock cannot be greater than 99',
-        minimum: 'The stock cannot be lower than 0',
       },
     },
   },
