@@ -19,6 +19,7 @@ password: 123
 ### endpoints
 - http://localhost:8000/api/login 
 - http://localhost:8000/api/login/auth
+- http://localhost:8000/api/create-account
 - http://localhost:8000/api/books
 - http://localhost:8000/api/books/available
 - http://localhost:8000/api/books-records
